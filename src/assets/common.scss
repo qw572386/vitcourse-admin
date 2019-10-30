@@ -1,0 +1,67 @@
+// 颜色相关
+$base-font-color: #747C9A;
+$light-font-color: #F3F7FA;
+$base-bgcolor: #262D47;
+$bgcolor: #171C30;
+$select-color: #F3F7FA;
+$main-color: #8390DE;
+
+// 宽高相关
+$base-width: 15px;
+$base-border: 1px solid $main-color;
+
+// 样式重置
+.el-dropdown-menu{
+  background-color: $base-bgcolor;
+  border: $base-border;
+}
+.el-dropdown-menu__item{
+  color: $light-font-color;
+}
+.el-popper[x-placement^=bottom] .popper__arrow::after{
+  border-bottom-color: $main-color;
+  top: 0;
+}
+.el-dropdown-menu__item:focus, .el-dropdown-menu__item:not(.is-disabled):hover{
+  background-color: $bgcolor;
+  color: $select-color;
+}
+.el-menu{
+  border-right: none;
+}
+.el-menu .el-menu-item.is-active:before{
+  display: inline-block;
+  width: 4px;
+  height: 25px;
+  background: $select-color;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  bottom: 0px;
+  margin: auto;
+  content: "";
+}
+
+// 浏览器样式重置
+::-webkit-scrollbar { /*滚动条整体样式*/
+  width: 6px !important; /*高宽分别对应横竖滚动条的尺寸*/
+  height: 6px !important;
+  background: $base-bgcolor !important;
+  border-radius: 5px !important;
+  cursor: pointer !important;
+
+}
+
+::-webkit-scrollbar-thumb { /*滚动条里面小方块*/
+  border-radius: 5px !important;
+  -webkit-box-shadow: inset 0 0 5px $base-bgcolor !important;
+  background: $main-color !important;
+  cursor: pointer !important;
+}
+
+::-webkit-scrollbar-track { /*滚动条里面轨道*/
+  -webkit-box-shadow: inset 0 0 5px $base-bgcolor !important;
+  border-radius: 5px !important;
+  background: $base-bgcolor !important;
+  cursor: pointer !important;
+}

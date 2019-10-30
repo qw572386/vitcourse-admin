@@ -1,0 +1,27 @@
+@import '@/assets/common.scss';
+.vit-header{
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  &-left{
+    display: flex;
+    align-items: center;
+  }
+  &-logo{
+    width: 120px;
+    height: 45px;
+  }
+  &-title{
+    color: $light-font-color;
+    font-size: 22px;
+    margin-left: 15px;
+  }
+  &-right{
+    display: flex;
+    align-items: center;
+    .user-info{
+      margin: 0 $base-width;
+      color: $light-font-color;
+    }
+  }
+}

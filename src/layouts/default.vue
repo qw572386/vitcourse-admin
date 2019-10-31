@@ -6,31 +6,31 @@
     <el-container>
       <el-aside width="200px" class="vit-layout-aside">
         <el-menu
-          default-active="1"
-          class="el-menu-vertical-demo"
-          @open="handleOpen"
-          @close="handleClose"
+          :default-active="defaultActive"
+          class="vit-course-side-menu"
           background-color="#262D47"
           text-color="#747C9A"
-          active-text-color="#F3F7FA">
-          <el-menu-item index="1">
+          active-text-color="#F3F7FA"
+          router
+          >
+          <el-menu-item index="home">
             <i class="el-icon-menu"></i>
             <span slot="title">首页</span>
           </el-menu-item>
-          <el-menu-item index="2">
-            <i class="el-icon-document"></i>
+          <el-menu-item index="lessons">
+            <i class="el-icon-edit-outline"></i>
             <span slot="title">课程管理</span>
           </el-menu-item>
-          <el-menu-item index="3">
-            <i class="el-icon-setting"></i>
+          <el-menu-item index="tags">
+            <i class="el-icon-price-tag"></i>
             <span slot="title">标签管理</span>
           </el-menu-item>
-          <el-menu-item index="4">
-            <i class="el-icon-setting"></i>
+          <el-menu-item index="type">
+            <i class="el-icon-notebook-1"></i>
             <span slot="title">分类管理</span>
           </el-menu-item>
-          <el-menu-item index="5">
-            <i class="el-icon-setting"></i>
+          <el-menu-item index="carousel">
+            <i class="el-icon-s-platform"></i>
             <span slot="title">轮播管理</span>
           </el-menu-item>
         </el-menu>
@@ -51,12 +51,9 @@ export default {
   components: {
     VitHeader
   },
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath)
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath)
+  computed: {
+    defaultActive() {
+      return this.$route.path.replace('/', '')
     }
   }
 }

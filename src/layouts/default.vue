@@ -3,7 +3,7 @@
     <el-header class="vit-layout-header">
       <vit-header />
     </el-header>
-    <el-container>
+    <el-container class="vit-layout-section">
       <el-aside width="200px" class="vit-layout-aside">
         <el-menu
           :default-active="defaultActive"
@@ -36,6 +36,9 @@
         </el-menu>
       </el-aside>
       <el-main class="vit-layout-main">
+        <el-breadcrumb separator="/" class="vit-layout-main-breadcrumb" v-if="canShowBreadcrumb">
+          <el-breadcrumb-item v-for="item in breadcrumbList" :key="item.name" :to="{ path: item.path }">{{item.name}}</el-breadcrumb-item>
+        </el-breadcrumb>
         <keep-alive>
           <router-view></router-view>
         </keep-alive>
@@ -48,12 +51,30 @@
 import VitHeader from '@/components/header/index.vue'
 export default {
   name: 'Layout',
+  data() {
+    return {
+      isShowBreadcrumb: false,
+      breadcrumbList: []
+    }
+  },
   components: {
     VitHeader
+  },
+  watch: {
+    $route: {
+      handler(route) {
+        this.isShowBreadcrumb = route.path !== '/home'
+        this.breadcrumbList = route.meta.breadcrumb
+      },
+      immediate: true
+    }
   },
   computed: {
     defaultActive() {
       return this.$route.path.replace('/', '')
+    },
+    canShowBreadcrumb() {
+      return this.isShowBreadcrumb && this.breadcrumbList.length
     }
   }
 }
@@ -64,9 +85,13 @@ export default {
 .vit-layout{
   height: 100%;
   background: $bgcolor;
+  overflow: hidden;
   &-header{
     padding: 0;
     background: $base-bgcolor;
+  }
+  &-section{
+    height: inherit;
   }
   &-aside, &-main{
     height: 100%;
@@ -78,6 +103,9 @@ export default {
   &-main{
     padding: 0 $base-width;
     box-sizing: border-box;
+    &-breadcrumb{
+      padding: $base-width 0;
+    }
   }
 }
 </style>

@@ -25,6 +25,12 @@ const routes = [
       {
         path: '/',
         name: 'lessons',
+        meta: {
+          breadcrumb: [
+            { path: '/', name: '首页' },
+            { name: '课程管理' }
+          ]
+        },
         component: () => import('@/views/lessons')
       }
     ]
@@ -36,6 +42,12 @@ const routes = [
       {
         path: '/',
         name: 'tags',
+        meta: {
+          breadcrumb: [
+            { path: '/', name: '首页' },
+            { name: '标签管理' }
+          ]
+        },
         component: () => import('@/views/tags')
       }
     ]
@@ -47,6 +59,12 @@ const routes = [
       {
         path: '/',
         name: 'type',
+        meta: {
+          breadcrumb: [
+            { path: '/', name: '首页' },
+            { name: '分类管理' }
+          ]
+        },
         component: () => import('@/views/type')
       }
     ]
@@ -58,11 +76,22 @@ const routes = [
       {
         path: '/',
         name: 'carousel',
+        meta: {
+          breadcrumb: [
+            { path: '/', name: '首页' },
+            { name: '轮播管理' }
+          ]
+        },
         component: () => import('@/views/carousel')
       }
     ]
   }
 ]
+
+const originalPush = VueRouter.prototype.push
+VueRouter.prototype.push = function(localtion) {
+  return originalPush.call(this, localtion).catch(err => err)
+}
 
 const router = new VueRouter({
   mode: 'history',

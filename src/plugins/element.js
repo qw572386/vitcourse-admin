@@ -1,5 +1,8 @@
 import Vue from 'vue'
 import {
+  Card,
+  Row,
+  Col,
   Button,
   Container,
   Header,
@@ -18,6 +21,9 @@ import {
 } from 'element-ui'
 
 Vue.use(Button)
+  .use(Card)
+  .use(Row)
+  .use(Col)
   .use(Container)
   .use(Header)
   .use(Main)
